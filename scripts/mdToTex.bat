@@ -13,6 +13,5 @@ set "name=%~n1"
 pandoc.exe "%1" -s -o "%name%.tex" >nul
 if %errorlevel% neq 0 (
     echo Error: Pandoc failed to convert the markdown file.
-    goto :deleting
 )
 
