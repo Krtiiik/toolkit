@@ -47,5 +47,5 @@ function Prompt
 
 New-Alias py Python
 
-function yt-dlp-mp4 { yt-dlp.exe -f "bv*+ba/b" $args }
-function yt-dlp-mp3 { yt-dlp.exe -f "ba" -x --audio-format "mp3" $args }
+function yt-dlp-mp4 { yt-dlp.exe -o "%(title)s.%(ext)s" -f "bv*+ba/b" $args }
+function yt-dlp-mp3 { yt-dlp.exe -o "%(title)s.%(ext)s" -f "ba" -x --audio-format "mp3" $args }
