@@ -12,7 +12,7 @@ function ShortPath
 		[string]$Path,
 		[int]$MaxLength = 80
 	)
-	
+
 	if ($Path.Length -le $MaxLength) {
 		return $Path
 	}
@@ -30,7 +30,7 @@ function ShortPath
 			$res = $splitPath[0] + "\" + $splitPath[1] + "\...\" + $res
 			break
 		}
-		
+
 		$res = $splitPath[$i] + "\" + $res
 		$len += $splitPath[$i].Length + 1
 	}
@@ -50,3 +50,5 @@ New-Alias ipy "C:\Users\lukas\AppData\Roaming\Python\Python311\Scripts\ipython.e
 
 function yt-dlp-mp4 { yt-dlp.exe -o "%(title)s.%(ext)s" -f "bv*+ba/b" $args }
 function yt-dlp-mp3 { yt-dlp.exe -o "%(title)s.%(ext)s" -f "ba" -x --audio-format "mp3" $args }
+
+function ping-Google { ping -t 8.8.8.8 }
