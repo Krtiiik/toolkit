@@ -46,7 +46,6 @@ function Prompt
 # Aliases ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 New-Alias py Python
-New-Alias ipy "C:\Users\lukas\AppData\Roaming\Python\Python311\Scripts\ipython.exe"
 
 function yt-dlp-mp4 { yt-dlp.exe -o "%(title)s.%(ext)s" -f "bv*+ba/b" $args }
 function yt-dlp-mp3 { yt-dlp.exe -o "%(title)s.%(ext)s" -f "ba" -x --audio-format "mp3" $args }
