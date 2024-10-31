@@ -18,16 +18,15 @@ function ShortPath
 	}
 
 	$terminalWidth = $Host.UI.RawUI.BufferSize.Width
-	$maxLength = [Math]::Max(0, $terminalWidth - $PromptPrefix.Length)
 
 	$splitPath = $Path -split '\\'
-	$len = $splitPath[0].Length + $splitPath[1].Length + $splitPath[-1].Length + 1
+	$len = $splitPath[0].Length + $splitPath[-1].Length + 1
 	$res = $splitPath[-1]
 
 	for ($i = $splitPath.Length - 2; $i -gt 0; $i--) {
 		$cdir = $splitPath[$i]
-		if ($len + $cdir.Length + 5 -ge $maxLength) {
-			$res = $splitPath[0] + "\" + $splitPath[1] + "\...\" + $res
+		if ($len + $cdir.Length + 5 -ge $MaxLength) {
+			$res = $splitPath[0] + "\...\" + $res
 			break
 		}
 
@@ -40,7 +39,8 @@ function ShortPath
 
 function Prompt
 {
-	$PromptPrefix + (ShortPath (Get-Location)) + $PromptCommand
+	$UncoloredPromptPrefix = ($env:UserName + "@" + $env:COMPUTERNAME + ": ")
+	$PromptPrefix + (ShortPath (Get-Location) ($Host.UI.RawUI.BufferSize.Width - $UncoloredPromptPrefix.Length)) + $PromptCommand
 }
 
 # Aliases ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
