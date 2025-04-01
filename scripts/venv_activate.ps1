@@ -1,5 +1,6 @@
 # Define the param block with argument and auto-completion settings
 param (
+    [ValidateSet([VenvNames])]
     [string]$venvName
 )
 
@@ -16,6 +17,15 @@ function Write-SupportedVenues {
 function Usage {
     Write-Host "Usage: .\activate_venv.ps1 -venvName <venv_name>"
     Write-SupportedVenues
+}
+
+Class VenvNames : System.Management.Automation.IValidateSetValuesGenerator {
+    [string[]] GetValidValues() {
+        # Get the list of virtual environments
+        $venvDir = ""
+        $venvNames = Get-ChildItem -Path $venvDir -Directory | Select-Object -ExpandProperty Name
+        return $venvNames
+    }
 }
 
 # ~~~~~~~ Script ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
