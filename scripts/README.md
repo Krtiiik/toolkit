@@ -4,7 +4,6 @@
   - Requires: Pandoc
 - `mdToPdf.bat` - Converts a specified Markdown file to a PDF document.
   - Requires: Pandoc, LaTeX
-- `venv_create.ps1` - Creates a python virtual environment with a specified name in a predefined shared directory.
-  - Requires: Python
-- `venv_activate.ps1` - Activates an existing python virtual environment with a specified name in a predefined shared directory.
-  - Requires: Python
+- `venvs.ps1` - Provides functions for managing Python virtual environments.
+  - Put in the `$PSScripts` directory, usually shared with the Powershell profile script.
+  - Fill in the venv directory.
