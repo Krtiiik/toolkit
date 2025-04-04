@@ -1,0 +1,1 @@
+alias.ll=log --graph --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%ah) %C(bold blue)%an%Creset %C(auto)%d%Creset' --abbrev-commit
