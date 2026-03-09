@@ -40,7 +40,13 @@ function ShortPath
 function Prompt
 {
 	$UncoloredPromptPrefix = ($env:UserName + "@" + $env:COMPUTERNAME + ": ")
-	$PromptPrefix + (ShortPath (Get-Location) ($Host.UI.RawUI.BufferSize.Width - $UncoloredPromptPrefix.Length)) + $PromptCommand
+	$MaxLength = $Host.UI.RawUI.BufferSize.Width - $UncoloredPromptPrefix.Length
+	$venvName = py -c "import os; print(os.environ.get('VIRTUAL_ENV', ''))"
+	if ($venvName) {
+		$venvName = Split-Path $venvName -Leaf
+		$MaxLength -= $venvName.Length
+	}
+	$PromptPrefix + (ShortPath (Get-Location) ($MaxLength)) + $PromptCommand
 }
 
 # Aliases ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
