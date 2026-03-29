@@ -44,7 +44,7 @@ function Prompt
 	$venvName = py -c "import os; print(os.environ.get('VIRTUAL_ENV', ''))"
 	if ($venvName) {
 		$venvName = Split-Path $venvName -Leaf
-		$MaxLength -= $venvName.Length
+		$MaxLength -= $venvName.Length + 3
 	}
 	$PromptPrefix + (ShortPath (Get-Location) ($MaxLength)) + $PromptCommand
 }
